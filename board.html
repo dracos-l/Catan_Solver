@@ -5,27 +5,59 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
 
-.form {
-  z-index: 1;
-
+#wrapper_0{
+  display:flex;
+  justify-content: space-between;
+  position:relative;
+  top:290px;
+  left:420px;
+  width:500px;
 }
 
-#id0 {
-  left:100px;
+#wrapper_1{
+  display:flex;
+  justify-content: space-between;
+  position:relative;
+  top:420px;
+  left:310px;
+  width:700px;
 }
 
+#wrapper_2{
+  display:flex;
+  justify-content: space-between;
+  position:relative;
+  top:560px;
+  left:220px;
+  width:890px;
+}
+
+#wrapper_3{
+  display:flex;
+  justify-content: space-between;
+  position:relative;
+  top:690px;
+  left:310px;
+  width:700px;
+}
+#wrapper_4{
+  display:flex;
+  justify-content: space-between;
+  position:relative;
+  top:820px;
+  left:420px;
+  width:500px;
+}
 
 </style>
 <body>
 
 <script>
-for(i=0;i<19;i++) {
-    document.body.onload = addResource(i);
+
+for(i=0;i<6;i++) {
+    document.body.onload = addRow(i)
 }
 
-for(i=19;i<38;i++) {
-    document.body.onload = addValue(i);
-}
 
 function createElement(element, attribute, inner) {
   if (typeof(element) === "undefined") {
@@ -53,9 +85,40 @@ function createElement(element, attribute, inner) {
   return el;
 }
 
+function addTile(i){
+  tile_id = "tile_";
+  tile_id += i;
+
+  div = createElement('div',{'id':tile_id},[addResource(i),addValue(i)]);
+
+  return(div)
+}
+
+
+function addRow(i){
+  wrapper_id = 'wrapper_';
+  wrapper_id += i;
+
+  if(i==0){
+    div = createElement("div",{'id':wrapper_id},[addTile(0),addTile(1),addTile(2)])
+  } else if(i==1) {
+    div = createElement("div",{'id':wrapper_id},[addTile(3),addTile(4),addTile(5),addTile(6)])
+  } else if(i==2) {
+    div = createElement("div",{'id':wrapper_id},[addTile(7),addTile(8),addTile(9),addTile(10),addTile(11)])
+  } else if(i==3) {
+    div = createElement("div",{'id':wrapper_id},[addTile(12),addTile(13),addTile(14),addTile(15)])
+  } else if(i==4) {
+    div = createElement("div",{'id':wrapper_id},[addTile(16),addTile(17),addTile(18)])
+  }
+
+  document.body.appendChild(div);
+}
+
+
 function addResource(i) {
   var ID = "id";
   ID += i;
+
   var inner_label = createElement("label",{"for":"resources"});
 
   var sheep = createElement("option",{"value":"sheep"},"Sheep"),
@@ -64,19 +127,20 @@ function addResource(i) {
   brick = createElement("option",{"value":"brick"},"Brick"),
   grain = createElement("option",{"value":"grain"},"Grain"),
   desert = createElement("option",{"value":"desert"},"Desert"),
-  items_container = createElement("select",{"name":"cars","id":'cars',"id":ID},[sheep,ore,wood,brick,grain,desert]);
+  items_container = createElement("select",{"name":"resources"},[sheep,ore,wood,brick,grain,desert]);
 
-  var inner_input = createElement("input",{"type":"submit","value":"Submit"});
+  var outer_form = createElement("form",{"class":ID},[inner_label,items_container]);
 
-  var outer_form = createElement("form",{"action":"PUT BACKEND LINK HERE","class":"form"},[inner_label,items_container,inner_input]);
-
-  document.body.appendChild(outer_form);
+  return(outer_form);
 }
 
 function addValue(i) {
+  var ID = "id";
+  ID += i;
+
     var inner_label = createElement("label",{"for":"resources"});
 
-    var roll_2 = createElement("option",{"value":"2"},"2"),
+    var roll_2 = createElement("option",{"value":2},2),
     roll_3 = createElement('option',{'value':3},3),
     roll_4 = createElement('option',{'value':4},4),
     roll_5 = createElement('option',{'value':5},5),
@@ -87,32 +151,31 @@ function addValue(i) {
     roll_10 = createElement('option',{'value':10},10),
     roll_11 = createElement('option',{'value':11},11),
     roll_12 = createElement('option',{'value':12},12),
-    items_container = createElement("select",{"name":"cars","id":'cars'},[roll_2,roll_3,roll_4,roll_5,roll_6,roll_7,roll_8,roll_9,roll_10,roll_11,roll_12,]);
+    items_container = createElement("select",{"name":"resources"},[roll_2,roll_3,roll_4,roll_5,roll_6,roll_7,roll_8,roll_9,roll_10,roll_11,roll_12,]);
 
-    var inner_input = createElement("input",{"type":"submit","value":"Submit"});
+    var outer_form = createElement("form",{"class":ID},[inner_label,items_container]);
 
-    var ID = "id";
-    ID += i;
-    var outer_form = createElement("form",{"action":"PUT BACKEND LINK HERE","class":"form",'id':ID},[inner_label,items_container,inner_input]);
-
-    document.body.appendChild(outer_form);
+    return(outer_form);
 }
 </script>
 
 </body>
 
 
-<div id="wrapper">
+<div id="wrapper_img">
     <img src="https://staticdelivery.nexusmods.com/images/461/11762443-1398059743.jpg">
 </div>
+
 
 <style>
   img {
     position: absolute;
-    top: 0;  
-    left: 0;
+    top:0;
+    left:0;
     z-index:-1;
-  }
+    max-width: 100%;
+    height: auto;
+}
 </style>
 
 
