@@ -5,6 +5,7 @@ class Tile {
       this.number = number;
     }
   }
+// hard coding all the tiles for now
 let t0 = new Tile('t0','ore', 10)
 let t1 = new Tile('t1','sheep', 2)
 let t2 = new Tile('t2','wood', 9)
@@ -31,7 +32,7 @@ class Vertex {
         this.edge = edge;
       }
 }
-
+// all the vertex's (this needs to be hardcoded)
 let v0 = new Vertex("s0", [t0]);
 let v1 = new Vertex("s0", [t1]);
 let v2 = new Vertex('s2', [t2]);
@@ -87,6 +88,7 @@ let v51 = new Vertex('s51', [t16]);
 let v52 = new Vertex('s52', [t17]);
 let v53 = new Vertex('s53', [t18]);
 
+// This creates the probability back of the tile object
 const tiles = [t0, t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12, t13, t14, t15, t16, t17, t18];
 for (let x in tiles){
     if (tiles[x].number == 2){
@@ -118,6 +120,7 @@ for (let x in tiles){
         tiles[x].prob = 1/36;
     }
 }
+// this finds the total probability of getting a resource by adding on the probabilities of the tiles
 const vertices = [v0, v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53];
 for (let i in vertices){
     vertices[i].total = 0
@@ -125,11 +128,27 @@ for (let i in vertices){
         vertices[i].total += j.prob;
     }
 }
+// this makes a list of all the best settlements
 best_settlement = [0, ''];
 for (let k in vertices){
-    if (k.total > best_settlement[0]){
+    if (k.total > best_settlement[0]){ // if it's better than zero (or whatever the best probability at the time is)
         best_settlement[0] = k.total;
         best_settlement[1] = k.settlement;
+    }
+    if (k.total == best_settlement[0]){ // if it's a tie add it to the list
+        best_settlement.push(k.total);
+        best_settlement.push(k.settlement);
+    }
+}
+// this cleans up the list
+actually_the_best = [];
+for (let j in best_settlement){ 
+    if (best_settlement[0] == typeof(best_settlement[j])){ // if its a number
+        if (best_settlement[0] == best_settlement[j]){ // if the numbers are still the same
+            // adds these both then
+            actually_the_best = best_settlement[j]
+            actually_the_best = best_settlement[j+1]
+        }
     }
 }
 
