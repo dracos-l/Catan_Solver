@@ -40,6 +40,7 @@
   left:310px;
   width:700px;
 }
+
 #wrapper_4{
   display:flex;
   justify-content: space-between;
@@ -118,6 +119,7 @@ function addRow(i){
 function addResource(i) {
   var ID = "id";
   ID += i;
+  dropdown_ID = "dropdown" + i
 
   var inner_label = createElement("label",{"for":"resources"});
 
@@ -127,7 +129,7 @@ function addResource(i) {
   brick = createElement("option",{"value":"brick"},"Brick"),
   grain = createElement("option",{"value":"grain"},"Grain"),
   desert = createElement("option",{"value":"desert"},"Desert"),
-  items_container = createElement("select",{"name":"resources"},[sheep,ore,wood,brick,grain,desert]);
+  items_container = createElement("select",{"class":"resources","name":dropdown_ID},[sheep,ore,wood,brick,grain,desert]);
 
   var outer_form = createElement("form",{"class":ID},[inner_label,items_container]);
 
@@ -137,26 +139,32 @@ function addResource(i) {
 function addValue(i) {
   var ID = "id";
   ID += i;
+  dropdown_ID = "dropdown" + i
 
-    var inner_label = createElement("label",{"for":"resources"});
+  var inner_label = createElement("label",{"for":"value"});
 
-    var roll_2 = createElement("option",{"value":2},2),
-    roll_3 = createElement('option',{'value':3},3),
-    roll_4 = createElement('option',{'value':4},4),
-    roll_5 = createElement('option',{'value':5},5),
-    roll_6 = createElement('option',{'value':6},6),
-    roll_7 = createElement('option',{'value':7},7),
-    roll_8 = createElement('option',{'value':8},8),
-    roll_9 = createElement('option',{'value':9},9),
-    roll_10 = createElement('option',{'value':10},10),
-    roll_11 = createElement('option',{'value':11},11),
-    roll_12 = createElement('option',{'value':12},12),
-    items_container = createElement("select",{"name":"resources"},[roll_2,roll_3,roll_4,roll_5,roll_6,roll_7,roll_8,roll_9,roll_10,roll_11,roll_12,]);
+  var roll_2 = createElement("option",{"value":2},2),
+  roll_3 = createElement('option',{'value':3},3),
+  roll_4 = createElement('option',{'value':4},4),
+  roll_5 = createElement('option',{'value':5},5),
+  roll_6 = createElement('option',{'value':6},6),
+  roll_7 = createElement('option',{'value':7},7),
+  roll_8 = createElement('option',{'value':8},8),
+  roll_9 = createElement('option',{'value':9},9),
+  roll_10 = createElement('option',{'value':10},10),
+  roll_11 = createElement('option',{'value':11},11),
+  roll_12 = createElement('option',{'value':12},12),
+  items_container = createElement("select",{"class":"value","name":dropdown_ID},[roll_2,roll_3,roll_4,roll_5,roll_6,roll_7,roll_8,roll_9,roll_10,roll_11,roll_12,]);
 
-    var outer_form = createElement("form",{"class":ID},[inner_label,items_container]);
+  var outer_form = createElement("form",{"class":ID},[inner_label,items_container]);
 
-    return(outer_form);
+  return(outer_form);
 }
+
+let select_res = document.querySelectorAll('select.resources');
+let select_val = document.querySelectorAll('select.value');
+
+
 </script>
 
 </body>
@@ -167,11 +175,8 @@ function addValue(i) {
 </div>
 
 <div id="input">
-  <form action="PUT BACKEND LINK HERE">
-    <input type="submit" value="Submit">
-  </form>
+  <input type="submit" value="Submit" id="submit">
 </div>
-
 
 <style>
   img {
@@ -191,6 +196,6 @@ function addValue(i) {
 
 </style>
 
-
+<span id="res"></span>
 </head>
 </html>
