@@ -146,6 +146,75 @@
         }
     }
     console.log(best_settlement)
+
+    let wood_board_prob = 0;
+    let sheep_board_prob = 0;
+    let ore_board_prob = 0;
+    let grain_board_prob = 0;
+    let brick_board_prob = 0;
+
+
+    for (let x in tiles){
+        if (tiles[x].type == 'wood'){
+            wood_board_prob = wood_board_prob + tiles[x].prob;
+        }
+        if (tiles[x].type == 'sheep'){
+            sheep_board_prob = sheep_board_prob + tiles[x].prob;
+        }
+        if (tiles[x].type == 'ore'){
+            ore_board_prob = ore_board_prob + tiles[x].prob;
+        }
+        if (tiles[x].type == 'grain'){
+            grain_board_prob = grain_board_prob + tiles[x].prob;
+        }
+        if (tiles[x].type == 'brick'){
+            brick_board_prob = brick_board_prob + tiles[x].prob;
+        }
+    }
+    console.log(wood_board_prob)
+    console.log(sheep_board_prob)
+    console.log(ore_board_prob)
+    console.log(grain_board_prob)
+    console.log(brick_board_prob)
+    for (let x in tiles){
+        if (tiles[x].type = 'wood'){
+            tiles[x].prob = tiles[x].prob/wood_board_prob;
+        }
+        if (tiles[x].type = 'sheep'){
+            tiles[x].prob = tiles[x].prob/sheep_board_prob;
+        }
+        if (tiles[x].type = 'ore'){
+            tiles[x].prob = tiles[x].prob/ore_board_prob;
+        }
+        if (tiles[x].type = 'grain'){
+            tiles[x].prob = tiles[x].prob/grain_board_prob;
+        }
+        if (tiles[x].type = 'brick'){
+            tiles[x].prob = tiles[x].prob/brick_board_prob;
+        }
+    }
+
+    // this finds the total probability of getting a resource by adding on the probabilities of the tiles
+    for (let i of vertices){
+        i.total = 0
+        for (let j = 0; j < i.edge.length; j++){
+            i.total = i.edge[j].prob + i.total;
+        }
+    }
+    // this makes a list of all the best settlements
+    best_settlement = [0, []];
+    for (let k of vertices){
+        if (k.total == best_settlement[0]){ // if it's a tie add it to the list
+            best_settlement[1].push(k.settlement);
+        }
+        if (k.total > best_settlement[0]){ // if it's better than zero (or whatever the best probability at the time is)
+            best_settlement[0] = k.total;
+            best_settlement[1] = [];
+            best_settlement[1].push(k.settlement);
+        }
+    }
+    console.log(best_settlement)
+
     
 </script>
 <div></div>
