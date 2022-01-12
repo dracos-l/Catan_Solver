@@ -66,6 +66,210 @@ img{
   left:640px;
 }
 
+.dot {
+  height: 25px;
+  width: 25px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  top: 10px;
+  right: 100px;
+}
+/*
+#s0 {
+  position: relative;
+  top: -25px;
+  left: 453px;
+}
+#s1 {
+  position: relative;
+  top: -25px;
+  left: 658px;
+}
+#s2 {
+  position: relative;
+  top: -27px;
+  left: 864px;
+}
+#s3 {
+  position: relative;
+  top: 25px;
+  left: 353px;
+}
+#s4 {
+  position: relative;
+  top: 25px;
+  left: 554px;
+}
+#s5 {
+  position: relative;
+  top: 25px;
+  left: 761px;
+}
+#s6 {
+  position: relative;
+  top: 25px;
+  left: 962px;
+}
+#s7 {
+  position: relative;
+  top: 148px;
+  left: 353px;
+}
+*/
+#s8 {
+  position: absolute;
+  top: 373px;
+  left: 562px;
+}
+#s9 {
+  position: absolute;
+  top: 373px;
+  left: 770px;
+}
+/*#s10 {
+  position: relative;
+  top: 148px;
+  left: 962px;
+}
+#s11 {
+  position: relative;
+  top: 200px;
+  left: 252px;
+}*/
+#s12 {
+  position: absolute;
+  top: 425px;
+  left: 462px;
+}
+#s13 {
+  position: absolute;
+  top: 425px;
+  left: 666px;
+}
+#s14 {
+  position: absolute;
+  top: 425px;
+  left: 870px;
+}
+/*
+#s15 {
+  position: relative;
+  top: 203px;
+  left: 1063px;
+}
+#s16 {
+  position: relative;
+  top: 323px;
+  left: 252px;
+*/
+#s17 {
+  position: absolute;
+  top: 545px;
+  left: 462px;
+}
+#s18 {
+  position: absolute;
+  top: 545px;
+  left: 666px;
+}
+#s19 {
+  position: absolute;
+  top: 545px;
+  left: 870px;
+}
+/*
+#s20 {
+  position: relative;
+  top: 323px;
+  left: 1063px;
+}
+#s21 {
+  position: relative;
+  top: 375px;
+  left: 151px;
+}
+*/
+#s22 {
+  position: absolute;
+  top: 600px;
+  left: 360px;
+}
+#s23 {
+  position: absolute;
+  top: 600px;
+  left: 562px;
+}
+#s24 {
+  position: absolute;
+  top: 600px;
+  left: 770px;
+}
+#s25 {
+  position: absolute;
+  top: 600px;
+  left: 970px;
+}
+#s28 {
+  position: absolute;
+  top: 720px;
+  left: 360px;
+}
+#s29 {
+  position: absolute;
+  top: 720px;
+  left: 562px;
+}
+#s30 {
+  position: absolute;
+  top: 720px;
+  left: 770px;
+}
+#s31 {
+  position: absolute;
+  top: 720px;
+  left: 970px;
+}
+#s34{
+  position: absolute;
+  top: 775px;
+  left: 462px;
+}
+#s35 {
+  position: absolute;
+  top: 775px;
+  left: 666px;
+}
+#s36 {
+  position: absolute;
+  top: 775px;
+  left: 870px;
+}
+#s39 {
+  position: absolute;
+  top: 898px;
+  left: 461px;
+}
+#s40 {
+  position: absolute;
+  top: 898px;
+  left: 666px;
+}
+#s41 {
+  position: absolute;
+  top: 898px;
+  left: 870px;
+}
+#s44 {
+  position: absolute;
+  top: 953px;
+  left: 562px;
+}
+#s45 {
+  position: absolute;
+  top: 953px;
+  left: 766px;
+}
 </style>
 <body>
 
@@ -177,8 +381,6 @@ function addValue(i) {
 }
 
 
-
-
 class Tile {
     constructor(Tile_name, type, number) {
     this.Tile_name = Tile_name;
@@ -270,7 +472,6 @@ let v52 = new Vertex('s52', [t17]);
 let v53 = new Vertex('s53', [t18]);
 
 
-
 // This creates the probability back of the tile object
 
 function yourFunction() {
@@ -332,7 +533,16 @@ function yourFunction() {
             best_settlement[1].push(k.settlement);
         }
     }
-    console.log(best_settlement)
+    console.log(best_settlement);
+    star(best_settlement);
+}
+
+function star(settlements) {
+  for (let i of settlements[1]){
+    dot = createElement('span', {'class':'dot','id':i});
+    document.body.onload = document.body.appendChild(dot);
+  }
+
 }
 
 
